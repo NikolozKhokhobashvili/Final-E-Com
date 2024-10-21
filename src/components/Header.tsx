@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 const Header = () => {
 
     return (
-        <header className=" w-[1116px] max-h-[84px]  h-[100%] absolute left-[162px] top-[40px] right-[162px] border-b-[1px] border-white">
+        <header className=" w-[1116px] max-h-[84px]  h-[100%] absolute left-[162px] top-[40px] right-[162px] border-b-[1px] border-#F6F6F6">
             <div className="flex justify-between items-center w-[100%] h-[45px]  px-[12px] relative top-[20px]">
                 <div className="flex items-center gap-[12px]">
                     <div className="bg-[#0E1422] rounded-[100px] w-[40px] h-[40px] px-[7px] py-[6px] flex justify-center">

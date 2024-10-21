@@ -99,7 +99,7 @@ const Footer = () => {
                 </div>
             </div>
 
-            <div className="max-w-[1116px] w-[100%] h-[79px] absolute top-[550px] left-[162px] right-[162px] border-t py-[27px] px-[587px] flex flex-col items-center border-[#F6F6F6]">
+            <div className="w-[1116px]  max-h-[79px] h-[100%] absolute top-[550px] left-[162px] right-[162px] border-t py-[27px] px-[587px] flex flex-col items-center border-[#F6F6F6]">
                 <span className="w-[237px] h-[25px] font-inter font-[400] text-[14px] leading-[24.5px] text-[#717171]">© 2023 DevCut. All rights reserved.</span>
             </div>
         </footer>
