@@ -33,6 +33,7 @@ const Productlist = () => {
 
 
 
+
     const [style, setStyle] = useState("w-[92px] h-[31px] rounded-[100px] outline-1  py-[3px] px-[16px]  outline-[#E9E9EB] font-inter font-[500] text-[14px] leading-[24.5px] text-[#000000] outline-none hover:cursor-pointer")
     const [meore, setMeore] = useState('w-[92px] h-[31px] rounded-[100px]   py-[3px] px-[16px]   font-inter font-[400] text-[14px] leading-[24.5px] text-[#5C5F6A] outline-none hover:cursor-pointer')
 

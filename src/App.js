@@ -1,3 +1,4 @@
+import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import DiscountHeader from './components/DiscountHeader'
 import Header from './components/Header'

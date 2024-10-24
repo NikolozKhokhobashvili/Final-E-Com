@@ -1,12 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux'
+import { decrement, increment } from '../store/app/Counter'
+import type { RootState } from '../store/store'
+import DetailsRevbtns from "../components/DetailsRevbtns";
+
+
+
 
 
 const Product = () => {
 
-    useEffect(() => {
-        window.scrollTo(0, 0)
-    }, [])
+    const count = useSelector((state: RootState) => state.value)
+    const dispatch = useDispatch()
+
+
+   
 
     const { userid } = useParams<{ userid: any }>();
 
@@ -66,94 +75,109 @@ const Product = () => {
 
     const item = list[userid]
 
-    const [none, setNone] = useState('')
+    const [none, setNone] = useState('border')
     const [meore, setMeore] = useState('')
     const [mesame, setMesame] = useState('')
 
-        const Changecolor = () =>{
-            if (none === '') {
-                setNone('border')
-                setMeore('')
-                setMesame('')
-            }
-            return null
+    const Changecolor = () => {
+        if (none === '') {
+            setNone('border')
+            setMeore('')
+            setMesame('')
+        }
+        return null
+    }
+
+    const Changecolor2 = () => {
+        if (meore === '') {
+            setNone('')
+            setMeore('border')
+            setMesame('')
+        }
+        return null
+    }
+    const Changecolor3 = () => {
+        if (mesame === '') {
+            setNone('')
+            setMeore('')
+            setMesame('border')
+        }
+        return null
+    }
+
+    const [first, setFirst] = useState('#0E1422')
+    const [second, setSecond] = useState('#E6E7E8')
+    const [third, setThird] = useState('#E6E7E8')
+    const [fourth, setFourth] = useState('#E6E7E8')
+    const [fifth, setFifth] = useState('#E6E7E8')
+
+
+    const Size = () => {
+        if (first === '#E6E7E8') {
+            setFirst('#0E1422')
+            setSecond('#E6E7E8')
+            setThird('#E6E7E8')
+            setFourth('#E6E7E8')
+            setFifth('#E6E7E8')
+        }
+        return null
+    }
+    const Size2 = () => {
+        if (second === '#E6E7E8') {
+            setFirst('#E6E7E8')
+            setSecond('#0E1422')
+            setThird('#E6E7E8')
+            setFourth('#E6E7E8')
+            setFifth('#E6E7E8')
+        }
+        return null
+    }
+    const Size3 = () => {
+        if (third === '#E6E7E8') {
+            setFirst('#E6E7E8')
+            setSecond('#E6E7E8')
+            setThird('#0E1422')
+            setFourth('#E6E7E8')
+            setFifth('#E6E7E8')
+        }
+        return null
+    }
+    const Size4 = () => {
+        if (fourth === '#E6E7E8') {
+            setFirst('#E6E7E8')
+            setSecond('#E6E7E8')
+            setThird('#E6E7E8')
+            setFourth('#0E1422')
+            setFifth('#E6E7E8')
+        }
+        return null
+    }
+    const Size5 = () => {
+        if (fifth === '#E6E7E8') {
+            setFirst('#E6E7E8')
+            setSecond('#E6E7E8')
+            setThird('#E6E7E8')
+            setFourth('#E6E7E8')
+            setFifth('#0E1422')
+        }
+        return null
+    }
+
+
+    const [heart, setHeart] = useState('none')
+
+    const fav = () => {
+        if (heart === 'none') {
+            setHeart('red')
+        } else {
+            setHeart('none')
         }
 
-        const Changecolor2 = () =>{
-            if (meore === '') {
-                setNone('')
-                setMeore('border')
-                setMesame('')
-            }
-            return null
-        }
-        const Changecolor3 = () =>{
-            if (mesame === '') {
-                setNone('')
-                setMeore('')
-                setMesame('border')
-            }
-            return null
-        }
+    }
 
-        const [first,setFirst] = useState('#E6E7E8')
-        const [second,setSecond] = useState('#E6E7E8')
-        const [third,setThird] = useState('#E6E7E8')
-        const [fourth,setFourth] = useState('#E6E7E8')
-        const [fifth,setFifth] = useState('#E6E7E8')
-
-
-        const Size = () =>{
-            if (first === '#E6E7E8') {
-                setFirst('#0E1422')
-                setSecond('#E6E7E8')
-                setThird('#E6E7E8')
-                setFourth('#E6E7E8')
-                setFifth('#E6E7E8')
-            }
-            return null
-        }
-        const Size2 = () =>{
-            if (second === '#E6E7E8') {
-                setFirst('#E6E7E8')
-                setSecond('#0E1422')
-                setThird('#E6E7E8')
-                setFourth('#E6E7E8')
-                setFifth('#E6E7E8')
-            }
-            return null
-        }
-        const Size3 = () =>{
-            if (third === '#E6E7E8') {
-                setFirst('#E6E7E8')
-                setSecond('#E6E7E8')
-                setThird('#0E1422')
-                setFourth('#E6E7E8')
-                setFifth('#E6E7E8')
-            }
-            return null
-        }
-        const Size4 = () =>{
-            if (fourth === '#E6E7E8') {
-                setFirst('#E6E7E8')
-                setSecond('#E6E7E8')
-                setThird('#E6E7E8')
-                setFourth('#0E1422')
-                setFifth('#E6E7E8')
-            }
-            return null
-        }
-        const Size5 = () =>{
-            if (fifth === '#E6E7E8') {
-                setFirst('#E6E7E8')
-                setSecond('#E6E7E8')
-                setThird('#E6E7E8')
-                setFourth('#E6E7E8')
-                setFifth('#0E1422')
-            }
-            return null
-        }
-
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [item])
 
     return (
         <div>
@@ -238,9 +262,39 @@ const Product = () => {
                             </div>
                         </div>
                     </div>
+
+                    <div className="w-[164px] h-[78px] absolute top-[359px]">
+                        <span className="w-[67px] h-[24px] font-inter font-[500] text-[12px] leading-[24px] tracking-[5%] items-center text-[#5C5F6A]">Quantity</span>
+                        <div className="w-[164px] h-[44px] absolute top-[34px] rounded-[4px] border flex justify-between px-[16px] border-[#E6E7E8] items-center">
+                            <button onClick={() => dispatch(decrement())} className="w-[20px] h-[20px] hover:cursor-pointer relative bottom-[9px]">
+                                <svg className="relative top-[10px] left-[4.17px]  flex text-center justify-center items-center" xmlns="http://www.w3.org/2000/svg" width="10" height="2" viewBox="0 0 13 2" fill="none">
+                                    <path d="M1.16675 1H11.1667" stroke="#5C5F6A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </button>
+                            <span>{count}</span>
+                            <button onClick={() => dispatch(increment())} className="w-[20px] h-[20px] hover:cursor-pointer relative bottom-[5px]">
+                                <svg className="relative top-[10px] left-[5px]  flex text-center justify-center items-center" xmlns="http://www.w3.org/2000/svg" width="10" height="2" viewBox="0 0 13 2" fill="none">
+                                    <path d="M1.16675 1H11.1667" stroke="#5C5F6A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                                <svg className="relative top-[4px] left-[8.8px]  flex text-center justify-center items-center" xmlns="http://www.w3.org/2000/svg" width="2" height="10" viewBox="0 0 2 12" fill="none">
+                                    <path d="M1 1V11" stroke="#5C5F6A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <button className="w-[284px] h-[44px] absolute top-[477px] left-[1px] rounded-[4px] py-[12px] px-[24px]  gap-[6px] bg-[#0E1422] text-[#FFFFFF] font-inter font-[500] text-[14px] leading-[24.5px] flex justify-center">Add to cart</button>
+                    <div className="w-[43px] h-[43px] absolute top-[477px] left-[301px] rounded-[4px] border flex gap-[10px] border-[#E6E7E8] justify-center items-center">
+                        <button><svg onClick={fav} className="hover:cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill={heart}>
+                            <path d="M12.5048 19.5L5.291 13.0513C1.37045 9.18258 7.13333 1.75337 12.5048 7.76384C17.8763 1.75337 23.6141 9.20729 19.72 13.0513L12.5048 19.5Z" stroke="#5C5F6A" stroke-width="1.42857" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg></button>
+                    </div>
+                    <span className="w-[235px] h-[24px] absolute top-[533px] left-[1px] font-inter font-[500] text-[12px] leading-[24px] tracking-[5%] items-center text-[#5C5F6A]">— Free shipping on orders $100+</span>
+
                 </div>
 
             </div>
+           <DetailsRevbtns/>
+           
         </div>
     )
 }
