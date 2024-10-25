@@ -1,39 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import {Items} from './Items'
 
 const Youlike = () =>{
-
-    const products: any =
-        [
-            {
-                "id": 0,
-                "name": "Classic Monochrome Tees",
-                "price": "$35.00",
-                "src": "/Images/cover.png"
-            },
-            {
-                "id": 1,
-                "name": "Monochromatic Wardrobe",
-                "price": "$27.00",
-                "src": "/Images/secondcover.png"
-            },
-            {
-                "id": 2,
-                "name": "Essential Neutrals",
-                "price": "$22.00",
-                "src": "/Images/thirdcover.png"
-            },
-            {
-                "id": 3,
-                "name": "UTRAANET Black",
-                "price": "$43.00",
-                "src": "/Images/forthcover.png"
-            }
-        ]
-
     return(
         <div className="flex w-[1092px] h-[434px] justify-between">
-            {products.map((product: any) => (
+            {Items.map((product: any) => (
                     <Link key={product.id} to={`/product/${product.id}`}>
                         <div className="w-[264px] h-[434px] rounded-[4px] py-[16px] px-[8px] space-y-[24px]">
                             <div className="w-[248px] h-[312px] rounded-[4px] bg-[#F6F6F6]">

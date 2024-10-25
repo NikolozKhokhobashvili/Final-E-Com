@@ -1,8 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
-import Counter from './app/Counter'
+import Cart from './app/Cart'
 
 export const store = configureStore({
-  reducer: Counter,
+  reducer: {
+    cart:Cart
+  }
+  
 })
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

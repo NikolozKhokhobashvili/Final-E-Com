@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
+import { useSelector} from "react-redux";
+import { RootState } from "../store/store";
 
 
 
@@ -10,6 +12,16 @@ import { ChevronDownIcon } from '@heroicons/react/20/solid'
 
 
 const Header = () => {
+
+    const [totalQuantity, setTotalQuantity] = useState(0)
+    const carts = useSelector((state: RootState) => state.cart.items)
+
+    useEffect(() =>{
+        let total:any = 0;
+        carts.forEach((item: any) => total += item.quantity);
+        setTotalQuantity(total)
+    },[carts])
+
 
     return (
         <header className=" w-[1116px] max-h-[84px]  h-[100%] absolute left-[162px] top-[40px] right-[162px] border-b-[1px] border-#F6F6F6">
@@ -82,7 +94,13 @@ const Header = () => {
                         <img className="w-[24px] h-[24px] py-[1px] px-[2px] gap-[10px]" src="/Images/search.svg" alt="search-logo" />
                         <input className="placeholder:text-[#878A92] placeholder:font-inter placeholder:font-[500] placeholder:text-[14px] placeholder:leading-[24.5px] outline-none " type="search" placeholder="Search products" />
                     </div>
-                    <img className="w-[18px] h-[18px] hover:cursor-pointer" src="/Images/cart.svg" alt="cart" />
+                    <button className="relative">
+                        <img className="w-[18px] h-[18px] hover:cursor-pointer" src="/Images/cart.svg" alt="cart" />
+                        <div className={`rounded-[100px] bg-red-700 flex justify-center items-center w-[15px] h-[15px] absolute right-0 left-[90%] bottom-[70%]`}>
+                            <span className="text-white text-[10px]">{totalQuantity}</span>
+                        </div>
+                        </button>
+                    
                     <img className="w-[18px] h-[18px] hover:cursor-pointer" src="/Images/profile.svg" alt="profile" />
                 </div>
             </div>

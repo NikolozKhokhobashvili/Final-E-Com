@@ -1,18 +1,37 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux'
-import { decrement, increment } from '../store/app/Counter'
 import type { RootState } from '../store/store'
 import DetailsRevbtns from "../components/DetailsRevbtns";
+import { addToCart } from "../store/app/Cart";
 
 
 
 
 
 const Product = () => {
-
-    const count = useSelector((state: RootState) => state.value)
     const dispatch = useDispatch()
+
+    const carts = useSelector((state: RootState) => state.cart.items)
+
+    const handleaddtocart = () =>{
+        dispatch(addToCart({
+            productid: item.id,
+            quantity: quantity
+        }))
+    }
+    
+
+    console.log(carts);
+
+    const [quantity, setQuantity] = useState<number>(1)
+    const handleMinusQauntity = () =>{
+        setQuantity(quantity - 1 < 1 ? 1 : quantity - 1);
+    }    
+    const handlePlusQuantity = () =>{
+        setQuantity(quantity + 1);
+    }
+    
 
    
 
@@ -176,6 +195,7 @@ const Product = () => {
 
 
 
+
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [item])
@@ -267,13 +287,13 @@ const Product = () => {
                     <div className="w-[164px] h-[78px] absolute top-[359px]">
                         <span className="w-[67px] h-[24px] font-inter font-[500] text-[12px] leading-[24px] tracking-[5%] items-center text-[#5C5F6A]">Quantity</span>
                         <div className="w-[164px] h-[44px] absolute top-[34px] rounded-[4px] border flex justify-between px-[16px] border-[#E6E7E8] items-center">
-                            <button onClick={() => dispatch(decrement())} className="w-[20px] h-[20px] hover:cursor-pointer relative bottom-[9px]">
+                            <button onClick={handleMinusQauntity} className="w-[20px] h-[20px] hover:cursor-pointer relative bottom-[9px]">
                                 <svg className="relative top-[10px] left-[4.17px]  flex text-center justify-center items-center" xmlns="http://www.w3.org/2000/svg" width="10" height="2" viewBox="0 0 13 2" fill="none">
                                     <path d="M1.16675 1H11.1667" stroke="#5C5F6A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
                                 </svg>
                             </button>
-                            <span>{count}</span>
-                            <button onClick={() => dispatch(increment())} className="w-[20px] h-[20px] hover:cursor-pointer relative bottom-[5px]">
+                            <span>{quantity}</span>
+                            <button onClick={handlePlusQuantity} className="w-[20px] h-[20px] hover:cursor-pointer relative bottom-[5px]">
                                 <svg className="relative top-[10px] left-[5px]  flex text-center justify-center items-center" xmlns="http://www.w3.org/2000/svg" width="10" height="2" viewBox="0 0 13 2" fill="none">
                                     <path d="M1.16675 1H11.1667" stroke="#5C5F6A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
                                 </svg>
@@ -283,7 +303,7 @@ const Product = () => {
                             </button>
                         </div>
                     </div>
-                    <button className="w-[284px] h-[44px] absolute top-[477px] left-[1px] rounded-[4px] py-[12px] px-[24px]  gap-[6px] bg-[#0E1422] text-[#FFFFFF] font-inter font-[500] text-[14px] leading-[24.5px] flex justify-center">Add to cart</button>
+                    <button onClick={handleaddtocart} className="w-[284px] h-[44px] absolute top-[477px] left-[1px] rounded-[4px] py-[12px] px-[24px]  gap-[6px] bg-[#0E1422] text-[#FFFFFF] font-inter font-[500] text-[14px] leading-[24.5px] flex justify-center">Add to cart</button>
                     <div className="w-[43px] h-[43px] absolute top-[477px] left-[301px] rounded-[4px] border flex gap-[10px] border-[#E6E7E8] justify-center items-center">
                         <button><svg onClick={fav} className="hover:cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill={heart}>
                             <path d="M12.5048 19.5L5.291 13.0513C1.37045 9.18258 7.13333 1.75337 12.5048 7.76384C17.8763 1.75337 23.6141 9.20729 19.72 13.0513L12.5048 19.5Z" stroke="#5C5F6A" stroke-width="1.42857" stroke-linecap="round" stroke-linejoin="round" />
