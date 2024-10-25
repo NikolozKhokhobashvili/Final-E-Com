@@ -3,13 +3,15 @@ import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import Youlike from "./Youlike"
 
+
+
 const DetailsRev = () => {
 
     const [bg, setBg] = useState("#F6F6F6")
     const [bg2, setBg2] = useState('')
     const [det, setDet] = useState('')
     const [rev, setRev] = useState('hidden')
-    const [top, setTop] = useState('1434px')
+    const [ragac, setRagac] = useState('top-[1434px]')
 
 
 
@@ -19,7 +21,7 @@ const DetailsRev = () => {
             setBg2('')
             setRev('hidden')
             setDet('')
-            setTop('1434px')
+            setRagac('top-[1434px]')
         }
         return null
 
@@ -30,9 +32,9 @@ const DetailsRev = () => {
             setBg('')
             setDet('hidden')
             setRev('')
-            setTop('1867px')
+            setRagac('top-[1867px]')
         }
-
+        return null
     }
 
     return (
@@ -48,7 +50,7 @@ const DetailsRev = () => {
                             <path d="M13.8571 2.07145C13.5415 2.07145 13.2857 1.81561 13.2857 1.50002C13.2857 1.18443 13.5415 0.928589 13.8571 0.928589" stroke="#0E1422" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
                             <path d="M13.8571 2.07145C14.1728 2.07145 14.4285 1.81561 14.4285 1.50002C14.4285 1.18443 14.1728 0.928589 13.8571 0.928589" stroke="#0E1422" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
-                        <span className="font-inter font-[500] text-[14px] leading-[24.5px] text-[#0E1422]">Details</span>
+                        <span className="font-inter font-[500] text-[14px] leading-[24.5px] text-[#0E1422] outline-none">Details</span>
                     </div>
                 </button>
                 <button onClick={click2}>
@@ -56,7 +58,7 @@ const DetailsRev = () => {
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="14" viewBox="0 0 16 15" fill="none">
                             <path d="M8 1L10.163 5.27865L15 5.96898L11.5 9.29758L12.326 14L8 11.7787L3.674 14L4.5 9.29758L1 5.96898L5.837 5.27865L8 1Z" stroke="#5C5F6A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
-                        <span className="font-inter font-[500] text-[14px] leading-[24.5px] text-[#0E1422]">Reviews</span>
+                        <span className="font-inter font-[500] text-[14px] leading-[24.5px] text-[#0E1422] outline-none">Reviews</span>
                     </div>
                 </button>
             </div>
@@ -217,11 +219,13 @@ const DetailsRev = () => {
                 </div>
                 <button className=" h-[44px] absolute top-[769px] left-[276px] rounded-[4px] border py-[12px] px-[24px] flex text-center items-center gap-[6px] bg-[#FFFFFF] border-[#B6B7BC] font-inter font-[500] text-[14px] leading-[24.5px] text-[#5C5F6A]">Load more reviews</button>
             </div>
-            <div className={`w-[1092px] h-[559px] absolute top-[${top}] left-[174px]`}>
-                <span>You might also like</span>
-                <span>SIMILAR PRODUCTS</span>
-                <Youlike/>
-           </div>
+            <div className={`w-[1092px] h-[559px] absolute ${ragac} space-y-[56px] left-[174px]`}>
+            <div className="h-[53px]">
+                    <span className="w-[219px] h-[29px] absolute top-[16px] left-[12px] font-inter font-[700] text-[24px] leading-[29.05px] text-[#0E1422]">You might also like</span>
+                    <span className="w-[127px] h-[24px] absolute top-[53px] left-[14px] font-inter font-[500] text-[12px] leading-[24px] tracking-[5%] text-[#878A92]">SIMILAR PRODUCTS</span>
+                </div>
+                <Youlike />
+               </div>
         </div>
 
     )

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
     return (
-        <footer className="w-[100%] h-[629px] absolute top-[2873px] left-[1px] border-t-[1px]">
+        <footer className="w-[100%] h-[629px] absolute top-[2873px] border-t-[1px]">
             <div className="w-[100%] h-[200px] bg-[#F6F6F6]">
                 <div className="max-w-[1116px] h-[82px] absolute top-[59px] left-[162px] right-[162px]">
                     <div className="w-[387px] h-[72px] absolute top-[5px] left-[12px] space-y-[24px]">

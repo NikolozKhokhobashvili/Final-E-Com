@@ -14,7 +14,6 @@ const Product = () => {
     const count = useSelector((state: RootState) => state.value)
     const dispatch = useDispatch()
 
-
    
 
     const { userid } = useParams<{ userid: any }>();
@@ -175,6 +174,8 @@ const Product = () => {
 
     }
 
+
+
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [item])
@@ -294,7 +295,6 @@ const Product = () => {
 
             </div>
            <DetailsRevbtns/>
-           
         </div>
     )
 }

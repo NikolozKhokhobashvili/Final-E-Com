@@ -18,8 +18,9 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path='/product/:userid' element={<Product />}></Route>
       </Routes>
-
-      <Footer />
+      
+      
+      <Footer/>
     </div>
   )
 }
