@@ -9,24 +9,28 @@ const Productlist = () => {
                 "id": 4,
                 "name": "Elegant Ebony Sweatshirts",
                 "price": "$35.00",
+                "category": "men's clothing",
                 "src": "/Images/maika.png"
             },
             {
                 "id": 5,
                 "name": "Sleek and Cozy Black",
                 "price": "$57.00",
+                "category": "men's clothing",
                 "src": "/Images/meoremaika.png"
             },
             {
                 "id": 6,
                 "name": "Raw Black Tees",
                 "price": "$19.00",
+                "category": "men's clothing",
                 "src": "/Images/mesamemaika.png"
             },
             {
                 "id": 7,
                 "name": "MOCKUP Black",
                 "price": "$30.00",
+                "category": "men's clothing",
                 "src": "/Images/meotxemaika.png"
             }
         ]

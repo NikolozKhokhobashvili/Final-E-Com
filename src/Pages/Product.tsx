@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useSelector, useDispatch } from 'react-redux'
-import type { RootState } from '../store/store'
+import { useDispatch } from 'react-redux'
 import DetailsRevbtns from "../components/DetailsRevbtns";
 import { addToCart } from "../store/app/Cart";
 
@@ -12,7 +11,8 @@ import { addToCart } from "../store/app/Cart";
 const Product = () => {
     const dispatch = useDispatch()
 
-    const carts = useSelector((state: RootState) => state.cart.items)
+    
+
 
     const handleaddtocart = () =>{
         dispatch(addToCart({
@@ -22,7 +22,7 @@ const Product = () => {
     }
     
 
-    console.log(carts);
+ 
 
     const [quantity, setQuantity] = useState<number>(1)
     const handleMinusQauntity = () =>{
@@ -42,56 +42,66 @@ const Product = () => {
         [
             {
                 "id": 0,
-                "name": "Classic Monochrome Tees",
-                "price": "$35.00",
-                "src": "/Images/cover.png"
+                "name": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+                "price": "$109.95",
+                "category": "men's clothing",
+                "src": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
             },
             {
                 "id": 1,
-                "name": "Monochromatic Wardrobe",
-                "price": "$27.00",
-                "src": "/Images/secondcover.png"
+                "name": "Mens Casual Premium Slim Fit T-Shirts",
+                "price": "$22.3",
+                "category": "men's clothing",
+                "src": "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg"
             },
             {
                 "id": 2,
-                "name": "Essential Neutrals",
-                "price": "$22.00",
-                "src": "/Images/thirdcover.png"
+                "name": "Mens Cotton Jacket",
+                "price": "$55.99",
+                "category": "men's clothing",
+                "src": "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg"
             },
             {
                 "id": 3,
-                "name": "UTRAANET Black",
-                "price": "$43.00",
-                "src": "/Images/forthcover.png"
+                "name": "Mens Casual Slim Fit",
+                "price": "$15.99",
+                "category": "men's clothing",
+                "src": "https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg"
             },
             {
                 "id": 4,
                 "name": "Elegant Ebony Sweatshirts",
                 "price": "$35.00",
+                "category": "men's clothing",
                 "src": "/Images/maika.png"
             },
             {
                 "id": 5,
                 "name": "Sleek and Cozy Black",
                 "price": "$57.00",
+                "category": "men's clothing",
                 "src": "/Images/meoremaika.png"
             },
             {
                 "id": 6,
                 "name": "Raw Black Tees",
                 "price": "$19.00",
+                "category": "men's clothing",
                 "src": "/Images/mesamemaika.png"
             },
             {
                 "id": 7,
                 "name": "MOCKUP Black",
                 "price": "$30.00",
+                "category": "men's clothing",
                 "src": "/Images/meotxemaika.png"
             }
 
         ]
 
     const item = list[userid]
+    
+    
 
     const [none, setNone] = useState('border')
     const [meore, setMeore] = useState('')
@@ -200,6 +210,7 @@ const Product = () => {
         window.scrollTo(0, 0)
     }, [item])
 
+
     return (
         <div>
             <div className="w-[1116px] h-[28px] absolute top-[140px] left-[162px] right-[162px] px-[12px] flex gap-[8px items-center">
@@ -210,7 +221,7 @@ const Product = () => {
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M5.81168 5.46731C6.06095 5.74435 6.06303 6.19578 5.81633 6.47571L0.948585 12L0.0460425 10.9967L4.46723 5.97935L0 1.01366L0.89321 0L5.81168 5.46731Z" fill="#71747E" />
                         </svg>
                     </div>
-                    <span className=" h-[25px] font-inter font-[500] text-[14px] leading-[24.5px] text-[#0E1422]">{item.name}</span>
+                    <span className=" h-[25px] font-inter font-[500] text-[14px] leading-[24.5px] text-[#0E1422]">{item.category}</span>
                 </div>
 
             </div>
@@ -218,14 +229,14 @@ const Product = () => {
 
             <div className="w-[1092px] h-[574px] absolute top-[184px] left-[174px]">
 
-                <div className="w-[534px] h-[574px] rounded-[5px] bg-[#F6F6F6]">
+                <div className="w-[534px] h-[574px] rounded-[5px] border border-[#F6F6F6]">
 
                     <img className="w-[288px] h-[404px] absolute top-[29px] left-[123px]" src={item.src} alt="shirt" />
 
                 </div>
                 <div className="w-[438px] h-[562px] absolute top-[4px] left-[654px]">
                     <div className="w-[438px] h-[29px] absolute top-[12px] flex items-center justify-between">
-                        <h3 className=" h-[29px] font-inter font-[700] text-[24px] leading-[29.05px] items-center text-[#0E1422]">{item.name}</h3>
+                        <h3 className=" h-[29px] font-inter font-[700] text-[24px] leading-[29.05px] items-center text-[#0E1422] overflow-hidden">{item.name}</h3>
                         <div className="w-[24px] h-[24px] py-[2px] px-[3px] flex gap-[10px]">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="18" className="flex justify-center items-center hover:cursor-pointer" viewBox="0 0 18 21" fill="none">
                                 <path d="M5.96889 11.859L12.04 15.441M12.0311 5.559L5.96889 9.141M17 4.2C17 5.69117 15.8061 6.9 14.3333 6.9C12.8606 6.9 11.6667 5.69117 11.6667 4.2C11.6667 2.70883 12.8606 1.5 14.3333 1.5C15.8061 1.5 17 2.70883 17 4.2ZM6.33333 10.5C6.33333 11.9912 5.13943 13.2 3.66667 13.2C2.19391 13.2 1 11.9912 1 10.5C1 9.00883 2.19391 7.8 3.66667 7.8C5.13943 7.8 6.33333 9.00883 6.33333 10.5ZM17 16.8C17 18.2912 15.8061 19.5 14.3333 19.5C12.8606 19.5 11.6667 18.2912 11.6667 16.8C11.6667 15.3088 12.8606 14.1 14.3333 14.1C15.8061 14.1 17 15.3088 17 16.8Z" stroke="#5C5F6A" stroke-width="1.43" stroke-linecap="round" stroke-linejoin="round" />
@@ -303,14 +314,13 @@ const Product = () => {
                             </button>
                         </div>
                     </div>
-                    <button onClick={handleaddtocart} className="w-[284px] h-[44px] absolute top-[477px] left-[1px] rounded-[4px] py-[12px] px-[24px]  gap-[6px] bg-[#0E1422] text-[#FFFFFF] font-inter font-[500] text-[14px] leading-[24.5px] flex justify-center">Add to cart</button>
+                    <button onClick={handleaddtocart}  className="w-[284px] h-[44px] absolute top-[477px] left-[1px] rounded-[4px] py-[12px] px-[24px]  gap-[6px] bg-[#0E1422] text-[#FFFFFF] font-inter font-[500] text-[14px] leading-[24.5px] flex justify-center">Add to cart</button>
                     <div className="w-[43px] h-[43px] absolute top-[477px] left-[301px] rounded-[4px] border flex gap-[10px] border-[#E6E7E8] justify-center items-center">
                         <button><svg onClick={fav} className="hover:cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill={heart}>
                             <path d="M12.5048 19.5L5.291 13.0513C1.37045 9.18258 7.13333 1.75337 12.5048 7.76384C17.8763 1.75337 23.6141 9.20729 19.72 13.0513L12.5048 19.5Z" stroke="#5C5F6A" stroke-width="1.42857" stroke-linecap="round" stroke-linejoin="round" />
                         </svg></button>
                     </div>
                     <span className="w-[235px] h-[24px] absolute top-[533px] left-[1px] font-inter font-[500] text-[12px] leading-[24px] tracking-[5%] items-center text-[#5C5F6A]">— Free shipping on orders $100+</span>
-
                 </div>
 
             </div>

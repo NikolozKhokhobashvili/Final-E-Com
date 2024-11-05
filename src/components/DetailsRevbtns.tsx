@@ -2,10 +2,84 @@ import React, {  useState } from "react"
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import Youlike from "./Youlike"
+import { useParams } from "react-router-dom";
 
 
 
 const DetailsRev = () => {
+
+    const { userid } = useParams<{ userid: any }>();
+
+    const list =
+        [
+            {
+                "id": 0,
+                "name": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+                "price": "$109.95",
+                "category": "men's clothing",
+                "description": "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
+                "src": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
+            },
+            {
+                "id": 1,
+                "name": "Mens Casual Premium Slim Fit T-Shirts",
+                "price": "$22.3",
+                "category": "men's clothing",
+                "description": "Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket.",
+                "src": "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg"
+            },
+            {
+                "id": 2,
+                "name": "Mens Cotton Jacket",
+                "price": "$55.99",
+                "category": "men's clothing",
+                "description": "great outerwear jackets for Spring/Autumn/Winter, suitable for many occasions, such as working, hiking, camping, mountain/rock climbing, cycling, traveling or other outdoors. Good gift choice for you or your family member. A warm hearted love to Father, husband or son in this thanksgiving or Christmas Day.",
+                "src": "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg"
+            },
+            {
+                "id": 3,
+                "name": "Mens Casual Slim Fit",
+                "price": "$15.99",
+                "category": "men's clothing",
+                "description": "The color could be slightly different between on the screen and in practice. / Please note that body builds vary by person, therefore, detailed size information should be reviewed below on the product description.",
+                "src": "https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg"
+            },
+            {
+                "id": 4,
+                "name": "Elegant Ebony Sweatshirts",
+                "price": "$35.00",
+                "category": "men's clothing",
+                "description": " Elevate your everyday style with our Men's Black T-Shirts, the ultimate wardrobe essential for modern men. Crafted with meticulous attention to detail and designed for comfort, these versatile black tees are a must-have addition to your collection.The classic black color never goes out of style. Whether you're dressing up for a special occasion or keeping it casual, these black t-shirts are the perfect choice, effortlessly complementing any outfit.",
+                "src": "/Images/maika.png"
+            },
+            {
+                "id": 5,
+                "name": "Sleek and Cozy Black",
+                "price": "$57.00",
+                "category": "men's clothing",
+                "description": "Elevate your everyday style with our Men's Black T-Shirts, the ultimate wardrobe essential for modern men. Crafted with meticulous attention to detail and designed for comfort, these versatile black tees are a must-have addition to your collection.The classic black color never goes out of style. Whether you're dressing up for a special occasion or keeping it casual, these black t-shirts are the perfect choice, effortlessly complementing any outfit.",
+                "src": "/Images/meoremaika.png"
+            },
+            {
+                "id": 6,
+                "name": "Raw Black Tees",
+                "price": "$19.00",
+                "category": "men's clothing",
+                "description": "Elevate your everyday style with our Men's Black T-Shirts, the ultimate wardrobe essential for modern men. Crafted with meticulous attention to detail and designed for comfort, these versatile black tees are a must-have addition to your collection.The classic black color never goes out of style. Whether you're dressing up for a special occasion or keeping it casual, these black t-shirts are the perfect choice, effortlessly complementing any outfit.",
+                "src": "/Images/mesamemaika.png"
+            },
+            {
+                "id": 7,
+                "name": "MOCKUP Black",
+                "price": "$30.00",
+                "category": "men's clothing",
+                "description": "Elevate your everyday style with our Men's Black T-Shirts, the ultimate wardrobe essential for modern men. Crafted with meticulous attention to detail and designed for comfort, these versatile black tees are a must-have addition to your collection.The classic black color never goes out of style. Whether you're dressing up for a special occasion or keeping it casual, these black t-shirts are the perfect choice, effortlessly complementing any outfit.",
+                "src": "/Images/meotxemaika.png"
+            }
+
+        ]
+
+    const item = list[userid]
 
     const [bg, setBg] = useState("#F6F6F6")
     const [bg2, setBg2] = useState('')
@@ -64,8 +138,7 @@ const DetailsRev = () => {
             </div>
             <div className={`w-[727px] h-[324px] ${det} absolute top-[934px] left-[447px]`}>
                 <h5 className="w-[45px] h-[19px] font-inter font-[600] text-[16px] leading-[19.36px] items-center text-[#000000]">Detail</h5>
-                <p className="w-[727px] h-[125px] relative top-[43px] font-inter font-[400] text-[14px] leading-[24.5px] text-[#5C5F6A]">Elevate your everyday style with our Men's Black T-Shirts, the ultimate wardrobe essential for modern men. Crafted with meticulous attention to detail and designed for comfort, these versatile black tees are a must-have addition to your collection. <br />
-                    The classic black color never goes out of style. Whether you're dressing up for a special occasion or keeping it casual, these black t-shirts are the perfect choice, effortlessly complementing any outfit.</p>
+                <p className="w-[727px] h-[125px] relative top-[43px] font-inter font-[400] text-[14px] leading-[24.5px] text-[#5C5F6A]">{item.description}</p>
                 <div className="w-[193px] h-[100px] absolute top-[224px] flex justify-center">
                     <ul className="font-inter font-[400] text-[14px] leading-[24.5px] text-[#5C5F6A] list-disc">
                         <li>Premium Quality</li>

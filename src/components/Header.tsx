@@ -2,11 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
-import { useSelector} from "react-redux";
+import { useSelector, useDispatch} from "react-redux";
 import { RootState } from "../store/store";
-
-
-
+import { toggleTab } from "../store/app/Cart";
 
 
 
@@ -15,6 +13,7 @@ const Header = () => {
 
     const [totalQuantity, setTotalQuantity] = useState(0)
     const carts = useSelector((state: RootState) => state.cart.items)
+    const disptach = useDispatch();
 
     useEffect(() =>{
         let total:any = 0;
@@ -22,9 +21,12 @@ const Header = () => {
         setTotalQuantity(total)
     },[carts])
 
+    const OpenTab = () =>{
+        disptach(toggleTab());
+    }
 
     return (
-        <header className=" w-[1116px] max-h-[84px]  h-[100%] absolute left-[162px] top-[40px] right-[162px] border-b-[1px] border-#F6F6F6">
+        <header className=" max-w-[1116px] w-[100%] max-h-[84px]  h-[100%] absolute left-[162px] top-[40px] right-[162px] border-b-[1px] border-#F6F6F6">
             <div className="flex justify-between items-center w-[100%] h-[45px]  px-[12px] relative top-[20px]">
                 <div className="flex items-center gap-[12px]">
                     <div className="bg-[#0E1422] rounded-[100px] w-[40px] h-[40px] px-[7px] py-[6px] flex justify-center">
@@ -94,7 +96,7 @@ const Header = () => {
                         <img className="w-[24px] h-[24px] py-[1px] px-[2px] gap-[10px]" src="/Images/search.svg" alt="search-logo" />
                         <input className="placeholder:text-[#878A92] placeholder:font-inter placeholder:font-[500] placeholder:text-[14px] placeholder:leading-[24.5px] outline-none " type="search" placeholder="Search products" />
                     </div>
-                    <button className="relative">
+                    <button onClick={OpenTab} className="relative">
                         <img className="w-[18px] h-[18px] hover:cursor-pointer" src="/Images/cart.svg" alt="cart" />
                         <div className={`rounded-[100px] bg-red-700 flex justify-center items-center w-[15px] h-[15px] absolute right-0 left-[90%] bottom-[70%]`}>
                             <span className="text-white text-[10px]">{totalQuantity}</span>
