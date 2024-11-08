@@ -217,7 +217,6 @@ const Product = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [item]);
-
   return (
     <div>
       <div className="w-[1116px] h-[28px] absolute top-[140px] left-[162px] right-[162px] px-[12px] flex gap-[8px items-center">

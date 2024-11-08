@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import Youlike from "./Youlike";
@@ -82,7 +82,6 @@ const DetailsRev = () => {
     },
   ];
 
-  // const item = list[userid]
   const item = list[Number(userid)];
 
   const [bg, setBg] = useState("#F6F6F6");
@@ -111,6 +110,117 @@ const DetailsRev = () => {
     }
     return null;
   };
+
+  const [revTab, setRevTab] = useState('hidden');
+
+  const revTabCLick = () => {
+    if (revTab === 'hidden') {
+      setRevTab('flex')
+    } else {
+      setRevTab('hidden')
+    }
+  }
+
+  const [revEmail, setRevEmail] = useState<string>("")
+  const [revName, setRevName] = useState<string>("")
+  const [revMess, setRevMess] = useState<string>("")
+  const [seconds, setSeconds] = useState<any>(0);
+  const [startTime, setStartTime] = useState<number | null>(null); 
+
+  
+  useEffect(() => {
+    const storedStartTime = localStorage.getItem('startTime');
+
+    if (storedStartTime) {
+      const parsedStartTime = Number(storedStartTime);
+      setStartTime(parsedStartTime); 
+    }
+  }, []);
+
+  
+  useEffect(() => {
+    if (startTime === null) return; 
+
+    const elapsedTime = Math.floor((new Date().getTime() - startTime) / 1000);
+    setSeconds(elapsedTime); 
+
+    localStorage.setItem('elapsedTime', elapsedTime.toString()); 
+  }, [startTime]); 
+
+
+
+
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
+    event.preventDefault();
+    
+    const currentTime = new Date().getTime();
+    setStartTime(currentTime); 
+    setSeconds(1); 
+
+    localStorage.setItem('startTime', currentTime.toString()); 
+    localStorage.setItem('elapsedTime', '1'); 
+
+    const revData = { revEmail, revName, revMess }
+    localStorage.setItem('user', JSON.stringify(revData));
+
+    setRevEmail('')
+    setRevName('')
+    setRevMess('')
+  }
+
+  const storedUserData = localStorage.getItem('user');
+  const user = storedUserData ? JSON.parse(storedUserData) : null;
+
+  let initials = '';
+  if (user && user.revName) {
+    const nameParts = user.revName.split(' ');
+
+
+    if (nameParts.length >= 2) {
+      const [firstName, lastName] = nameParts;
+      initials = firstName.charAt(0).toUpperCase() + lastName.charAt(0).toUpperCase();
+    } else if (nameParts.length === 1) {
+      initials = nameParts[0].charAt(0).toUpperCase();
+    }
+  }
+
+
+  const newInitials = user ? { 
+    ...user, 
+    logo: initials, 
+    date: `${seconds} Seconds ago` 
+  } : null;
+
+
+
+
+
+  const RevList = [
+    {
+      id: 11,
+      logo: 'ED',
+      revName: 'Emily Davis',
+      date: '1 Week ago',
+      revMess: "This company always goes above and beyond to satisfy their customers.",
+    },
+    {
+      id: 12,
+      logo: "DS",
+      revName: "Daniel Smith",
+      date: '2 Months ago',
+      revMess: "I can't believe how affordable and high-quality this item is!"
+    },
+    {
+      id: 13,
+      logo: "BC",
+      revName: "Benjamin Clark",
+      date: "23 April",
+      revMess: 'These guys know their stuff, and it shows in their products.'
+    }
+  ]
+
+  RevList.push(newInitials)
 
   return (
     <div>
@@ -232,8 +342,8 @@ const DetailsRev = () => {
               — 54 Reviews
             </span>
           </div>
-          <button className="w-[155px] h-[44px] relative top-[114px] text-center justify-center items-center rounded-[4px] border py-[12px] px-[24px] flex gap-[6px] bg-[#FFFFFF] border-[#0E1422]">
-            Write a review
+          <button onClick={revTabCLick} className="w-[155px] h-[44px] relative top-[114px] text-center justify-center items-center rounded-[4px] border py-[12px] px-[24px] flex gap-[6px] bg-[#FFFFFF] border-[#0E1422]">
+            Write a review 
           </button>
           <div className="w-[106px] h-[24px] absolute top-[158px] left-[621px] rounded-[4px] px-[10px] flex gap-[5px] items-center hover:cursor-pointer">
             <Menu as="div" className="relative inline-block text-left">
@@ -272,267 +382,96 @@ const DetailsRev = () => {
             </Menu>
           </div>
         </div>
-        <div className="w-[727px] h-[161px] absolute top-[222px] rounded-[4px]">
-          <div className="w-[48px] h-[48px] relative top-[39px] left-[8px] rounded-[100px] py-[2px] items-center  justify-center px-[6px] flex gap-[10px] bg-[#F0F1FF]">
-            <span className="w-[19px] h-[25px] font-inter font-[400] text-[14px] leading-[24.5px]  text-[#4078FF]">
-              ED
-            </span>
-          </div>
-          <div className="w-[630px] h-[96px] absolute top-[39px] left-[80px] flex flex-col justify-between">
-            <div className="w-[630px] h-[55px] flex flex-col gap-[6px]">
-              <div className="w-[630px] h-[25px] flex justify-between items-center">
-                <span className="w-[107px] h-[25px] font-inter font-[500] text-[14px] leading-[24.5px] items-center text-[#0E1422]">
-                  Emily Davis
+        <div className="flex flex-col items-center absolute bg-white h-[500px] overflow-scroll">
+          {RevList.map((costumer) => (
+            <div className="w-[727px] h-[161px] rounded-[4px]">
+              <div className="w-[48px] h-[48px] relative top-[45px] left-[8px] rounded-[100px] py-[2px] items-center  justify-center px-[6px] flex gap-[10px] bg-[#F0F1FF]">
+                <span className="w-[19px] h-[25px] font-inter font-[400] text-[14px] text-center leading-[24.5px]  text-[#4078FF]">
+                  {costumer.logo}
                 </span>
-                <div className="flex items-center gap-[4px]">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                  >
-                    <path
-                      d="M8 0.5L10.472 5.43691L16 6.23344L12 10.0741L12.944 15.5L8 12.9369L3.056 15.5L4 10.0741L0 6.23344L5.528 5.43691L8 0.5Z"
-                      fill="#5C5F6A"
-                    />
-                  </svg>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                  >
-                    <path
-                      d="M8 0.5L10.472 5.43691L16 6.23344L12 10.0741L12.944 15.5L8 12.9369L3.056 15.5L4 10.0741L0 6.23344L5.528 5.43691L8 0.5Z"
-                      fill="#5C5F6A"
-                    />
-                  </svg>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                  >
-                    <path
-                      d="M8 0.5L10.472 5.43691L16 6.23344L12 10.0741L12.944 15.5L8 12.9369L3.056 15.5L4 10.0741L0 6.23344L5.528 5.43691L8 0.5Z"
-                      fill="#5C5F6A"
-                    />
-                  </svg>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                  >
-                    <path
-                      d="M8 0.5L10.472 5.43691L16 6.23344L12 10.0741L12.944 15.5L8 12.9369L3.056 15.5L4 10.0741L0 6.23344L5.528 5.43691L8 0.5Z"
-                      fill="#5C5F6A"
-                    />
-                  </svg>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                  >
-                    <path
-                      d="M8 1.5L10.163 5.77865L15 6.46898L11.5 9.79758L12.326 14.5L8 12.2787L3.674 14.5L4.5 9.79758L1 6.46898L5.837 5.77865L8 1.5Z"
-                      stroke="#5C5F6A"
-                      strokeWidth="1.4"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </div>
               </div>
-              <span className="w-[78px] h-[24px] font-inter font-[500] text-[12px] leading-[24px] tracking-[5%] text-[#5C5F6A]">
-                1 Week ago
-              </span>
-            </div>
-            <p className="w-[581px] h-[25px] font-inter font-[400] text-[14px] leading-[24.5px] text-[#5C5F6A]">
-              This company always goes above and beyond to satisfy their
-              customers.
-            </p>
-          </div>
-        </div>
-        <div className="w-[727px] h-[161px] absolute top-[383px] rounded-[4px]">
-          <div className="w-[48px] h-[48px] relative top-[39px] left-[8px] rounded-[100px] py-[2px] items-center  justify-center px-[6px] flex gap-[10px] bg-[#F0F1FF]">
-            <span className="w-[19px] h-[25px] font-inter font-[400] text-[14px] leading-[24.5px]  text-[#4078FF]">
-              DS
-            </span>
-          </div>
-          <div className="w-[630px] h-[96px] absolute top-[39px] left-[80px] flex flex-col justify-between">
-            <div className="w-[630px] h-[55px] flex flex-col gap-[6px]">
-              <div className="w-[630px] h-[25px] flex justify-between items-center">
-                <span className="w-[107px] h-[25px] font-inter font-[500] text-[14px] leading-[24.5px] items-center text-[#0E1422]">
-                  Daniel Smith
-                </span>
-                <div className="flex items-center gap-[4px]">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                  >
-                    <path
-                      d="M8 0.5L10.472 5.43691L16 6.23344L12 10.0741L12.944 15.5L8 12.9369L3.056 15.5L4 10.0741L0 6.23344L5.528 5.43691L8 0.5Z"
-                      fill="#5C5F6A"
-                    />
-                  </svg>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                  >
-                    <path
-                      d="M8 0.5L10.472 5.43691L16 6.23344L12 10.0741L12.944 15.5L8 12.9369L3.056 15.5L4 10.0741L0 6.23344L5.528 5.43691L8 0.5Z"
-                      fill="#5C5F6A"
-                    />
-                  </svg>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                  >
-                    <path
-                      d="M8 0.5L10.472 5.43691L16 6.23344L12 10.0741L12.944 15.5L8 12.9369L3.056 15.5L4 10.0741L0 6.23344L5.528 5.43691L8 0.5Z"
-                      fill="#5C5F6A"
-                    />
-                  </svg>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                  >
-                    <path
-                      d="M8 0.5L10.472 5.43691L16 6.23344L12 10.0741L12.944 15.5L8 12.9369L3.056 15.5L4 10.0741L0 6.23344L5.528 5.43691L8 0.5Z"
-                      fill="#5C5F6A"
-                    />
-                  </svg>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                  >
-                    <path
-                      d="M8 1.5L10.163 5.77865L15 6.46898L11.5 9.79758L12.326 14.5L8 12.2787L3.674 14.5L4.5 9.79758L1 6.46898L5.837 5.77865L8 1.5Z"
-                      stroke="#5C5F6A"
-                      strokeWidth="1.4"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
+              <div className="w-[630px] h-[96px] absolute left-[80px] flex flex-col justify-between">
+                <div className="w-[630px] h-[55px] flex flex-col gap-[6px]">
+                  <div className="w-[630px] h-[25px] flex justify-between items-center">
+                    <span className=" h-[25px] font-inter font-[500] text-[14px] leading-[24.5px] items-center text-[#0E1422]">
+                      {costumer.revName}
+                    </span>
+                    <div className="flex items-center gap-[4px]">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                      >
+                        <path
+                          d="M8 0.5L10.472 5.43691L16 6.23344L12 10.0741L12.944 15.5L8 12.9369L3.056 15.5L4 10.0741L0 6.23344L5.528 5.43691L8 0.5Z"
+                          fill="#5C5F6A"
+                        />
+                      </svg>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                      >
+                        <path
+                          d="M8 0.5L10.472 5.43691L16 6.23344L12 10.0741L12.944 15.5L8 12.9369L3.056 15.5L4 10.0741L0 6.23344L5.528 5.43691L8 0.5Z"
+                          fill="#5C5F6A"
+                        />
+                      </svg>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                      >
+                        <path
+                          d="M8 0.5L10.472 5.43691L16 6.23344L12 10.0741L12.944 15.5L8 12.9369L3.056 15.5L4 10.0741L0 6.23344L5.528 5.43691L8 0.5Z"
+                          fill="#5C5F6A"
+                        />
+                      </svg>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                      >
+                        <path
+                          d="M8 0.5L10.472 5.43691L16 6.23344L12 10.0741L12.944 15.5L8 12.9369L3.056 15.5L4 10.0741L0 6.23344L5.528 5.43691L8 0.5Z"
+                          fill="#5C5F6A"
+                        />
+                      </svg>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                      >
+                        <path
+                          d="M8 1.5L10.163 5.77865L15 6.46898L11.5 9.79758L12.326 14.5L8 12.2787L3.674 14.5L4.5 9.79758L1 6.46898L5.837 5.77865L8 1.5Z"
+                          stroke="#5C5F6A"
+                          strokeWidth="1.4"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                  <span className="h-[24px] font-inter font-[500] text-[12px] leading-[24px] tracking-[5%] text-[#5C5F6A]">
+                    {costumer.date}
+                  </span>
                 </div>
+                <p className="w-[581px] h-[25px] font-inter font-[400] text-[14px] leading-[24.5px] text-[#5C5F6A]">
+                  {costumer.revMess}
+                </p>
               </div>
-              <span className="w-[78px] h-[24px] font-inter font-[500] text-[12px] leading-[24px] tracking-[5%] text-[#5C5F6A]">
-                2 Month ago
-              </span>
             </div>
-            <p className="w-[581px] h-[25px] font-inter font-[400] text-[14px] leading-[24.5px] text-[#5C5F6A]">
-              I can't believe how affordable and high-quality this item is!
-            </p>
-          </div>
-        </div>
-        <div className="w-[727px] h-[161px] absolute top-[544px] rounded-[4px]">
-          <div className="w-[48px] h-[48px] relative top-[39px] left-[8px] rounded-[100px] py-[2px] items-center  justify-center px-[6px] flex gap-[10px] bg-[#F0F1FF]">
-            <span className="w-[19px] h-[25px] font-inter font-[400] text-[14px] leading-[24.5px]  text-[#4078FF]">
-              BC
-            </span>
-          </div>
-          <div className="w-[630px] h-[96px] absolute top-[39px] left-[80px] flex flex-col justify-between">
-            <div className="w-[630px] h-[55px] flex flex-col gap-[6px]">
-              <div className="w-[630px] h-[25px] flex justify-between items-center">
-                <span className="w-[107px] h-[25px] font-inter font-[500] text-[14px] leading-[24.5px] items-center text-[#0E1422]">
-                  Benjamin Clark
-                </span>
-                <div className="flex items-center gap-[4px]">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                  >
-                    <path
-                      d="M8 0.5L10.472 5.43691L16 6.23344L12 10.0741L12.944 15.5L8 12.9369L3.056 15.5L4 10.0741L0 6.23344L5.528 5.43691L8 0.5Z"
-                      fill="#5C5F6A"
-                    />
-                  </svg>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                  >
-                    <path
-                      d="M8 0.5L10.472 5.43691L16 6.23344L12 10.0741L12.944 15.5L8 12.9369L3.056 15.5L4 10.0741L0 6.23344L5.528 5.43691L8 0.5Z"
-                      fill="#5C5F6A"
-                    />
-                  </svg>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                  >
-                    <path
-                      d="M8 0.5L10.472 5.43691L16 6.23344L12 10.0741L12.944 15.5L8 12.9369L3.056 15.5L4 10.0741L0 6.23344L5.528 5.43691L8 0.5Z"
-                      fill="#5C5F6A"
-                    />
-                  </svg>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                  >
-                    <path
-                      d="M8 0.5L10.472 5.43691L16 6.23344L12 10.0741L12.944 15.5L8 12.9369L3.056 15.5L4 10.0741L0 6.23344L5.528 5.43691L8 0.5Z"
-                      fill="#5C5F6A"
-                    />
-                  </svg>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                  >
-                    <path
-                      d="M8 1.5L10.163 5.77865L15 6.46898L11.5 9.79758L12.326 14.5L8 12.2787L3.674 14.5L4.5 9.79758L1 6.46898L5.837 5.77865L8 1.5Z"
-                      stroke="#5C5F6A"
-                      strokeWidth="1.4"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </div>
-              </div>
-              <span className="w-[78px] h-[24px] font-inter font-[500] text-[12px] leading-[24px] tracking-[5%] text-[#5C5F6A]">
-                23 April
-              </span>
-            </div>
-            <p className="w-[581px] h-[25px] font-inter font-[400] text-[14px] leading-[24.5px] text-[#5C5F6A]">
-              These guys know their stuff, and it shows in their products.
-            </p>
-          </div>
+          ))}
         </div>
         <button className=" h-[44px] absolute top-[769px] left-[276px] rounded-[4px] border py-[12px] px-[24px] flex text-center items-center gap-[6px] bg-[#FFFFFF] border-[#B6B7BC] font-inter font-[500] text-[14px] leading-[24.5px] text-[#5C5F6A]">
           Load more reviews
@@ -551,6 +490,44 @@ const DetailsRev = () => {
         </div>
         <Youlike />
       </div>
+      <form onSubmit={handleSubmit}>
+        <div className={`w-[424px] h-[600px] bg-white border-2 relative top-[1007px] rounded-md left-[50%] ${revTab}`}>
+          <div className="w-[424px] h-[83px] border-b  ">
+            <div className="w-[344px] h-[32px] absolute top-[32px] left-[40px] flex justify-between items-center">
+              <h5 className="font-inter font-[600] text-[16px] leading-[19.36px] text-[#0E1422]">Write Review</h5>
+              <button onClick={revTabCLick}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20px"
+                  height="20px"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                >
+                  <path
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    d="M5.29289 5.29289C5.68342 4.90237 6.31658 4.90237 6.70711 5.29289L12 10.5858L17.2929 5.29289C17.6834 4.90237 18.3166 4.90237 18.7071 5.29289C19.0976 5.68342 19.0976 6.31658 18.7071 6.70711L13.4142 12L18.7071 17.2929C19.0976 17.6834 19.0976 18.3166 18.7071 18.7071C18.3166 19.0976 17.6834 19.0976 17.2929 18.7071L12 13.4142L6.70711 18.7071C6.31658 19.0976 5.68342 19.0976 5.29289 18.7071C4.90237 18.3166 4.90237 17.6834 5.29289 17.2929L10.5858 12L5.29289 6.70711C4.90237 6.31658 4.90237 5.68342 5.29289 5.29289Z"
+                    fill="#0F1729"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div className="w-[344px] h-[69px] absolute  top-[124px] left-[40px] ">
+            <span className="font-inter font-[500] text-[14px] leading-[24.5px] text-[#474B57]">Email</span>
+            <input type="email" value={revEmail} onChange={(e) => setRevEmail(e.target.value)} required className="w-[344px] h-[45px] rounded-[6px] border py-[10px] px-[15px] flex gap-[8px] border-[#E6E7E8] outline-none placeholder:font-inter font-[400] text-[15px] leading-[24.5px] text-[#5C5F6A]" />
+          </div>
+          <div className="w-[344px] h-[69px] absolute  top-[208px] left-[40px] ">
+            <span className="font-inter font-[500] text-[14px] leading-[24.5px] text-[#474B57]">Full name</span>
+            <input type="text" value={revName} onChange={(e) => setRevName(e.target.value)} required className="w-[344px] h-[45px] rounded-[6px] border py-[10px] px-[15px] flex gap-[8px] border-[#E6E7E8] outline-none placeholder:font-inter font-[400] text-[15px] leading-[24.5px] text-[#5C5F6A]" />
+          </div>
+          <div className="w-[344px] h-[69px] absolute  top-[300px] left-[40px] ">
+            <span className="font-inter font-[500] text-[14px] leading-[24.5px] text-[#474B57]">Review</span>
+            <textarea value={revMess} onChange={(e) => setRevMess(e.target.value)} required className="w-[344px] h-[128px] rounded-[6px] border py-[10px] px-[15px] flex gap-[8px] border-[#E6E7E8] outline-none placeholder:font-inter font-[400] text-[15px] leading-[24.5px] text-[#5C5F6A]" />
+          </div>
+          <button className="w-[344px] h-[44px] absolute top-[500px] left-[40px] rounded-[4px] py-[12px] px-[24px] flex gap-[8px] bg-[#0E1422] text-white justify-center items-center font-inter font-[500] text-[14px] leading-[24.5px]" type="submit">Submit Your Review</button>
+        </div>
+      </form>
     </div>
   );
 };
