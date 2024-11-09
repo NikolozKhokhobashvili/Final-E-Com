@@ -4,14 +4,6 @@ import Youlike from './Youlike'
 
 
 const Bestseller = () => {
-
-
-
-
-
-
-
-
     return (
         <div className="w-[1092px] h-[568px] absolute top-[992px] left-[174px]">
             <span className="relative left-[479px] w-[71px] h-[24px] font-inter font-[500] text-[12px] leading-[24px] tracking-[5%] text-[#AAAAAA]">SHOP NOW</span>

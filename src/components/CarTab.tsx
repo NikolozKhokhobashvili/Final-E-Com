@@ -6,7 +6,7 @@ import { toggleTab } from "../store/app/Cart";
 
 const CarTab = () => {
   const statusTab = useSelector((store: any) => store.cart.statusTab);
-  const cartItems = useSelector((store: any) => store.cart.items); 
+  const cartItems = useSelector((store: any) => store.cart.items);
   const dispatch = useDispatch();
 
   const CloseTab = () => {
@@ -14,10 +14,11 @@ const CarTab = () => {
   };
 
   const totalPrice = cartItems.reduce((total: number, prod: {
-    quantity: number; price: number; 
-}, quantity: any)=> total + prod.price * prod.quantity, 0 )
-
+    quantity: number; price: number;
+  }, quantity: any) => total + prod.price * prod.quantity, 0)
   
+
+
 
   return (
     <div
@@ -48,7 +49,7 @@ const CarTab = () => {
         </button>
       </div>
       <div className="h-[416px] overflow-scroll">
-        {cartItems.map((item: { productid: number; quantity: number; name:string; price:number; src:string }) => (
+        {cartItems.map((item: { productid: number; quantity: number; name: string; price: number; src: string }) => (
           <Cartitem
             key={item.productid}
             productid={item.productid}
@@ -65,12 +66,14 @@ const CarTab = () => {
             Total
           </h6>
           <h6 className="font-inter font-[500] text-[14px] leading-[16.94px] text-[#0E1422]">
-             ${totalPrice.toFixed(2)}
+            ${totalPrice.toFixed(2)}
           </h6>
         </div>
-        <button className="w-[352px] h-[40px] relative top-[40px] rounded-[4px] py-[12px] px-[20px] bg-[#0E1422] text-white flex justify-center text-center items-center font-[500] font-inter text-[14px] leading-[24.5px] outline-none">
-          View Cart
-        </button>
+        <Link to='/cart'>
+          <button className="w-[352px] h-[40px] relative top-[40px] rounded-[4px] py-[12px] px-[20px] bg-[#0E1422] text-white flex justify-center text-center items-center font-[500] font-inter text-[14px] leading-[24.5px] outline-none">
+            View Cart
+          </button>
+        </Link>
         <Link to="/checkout">
           <span className="relative top-[72px] left-[148px] font-inter font-[500] text-[12px] leading-[18px] text-[#5C5F6A] border-b border-[#000000]">
             Checkout

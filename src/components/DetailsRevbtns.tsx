@@ -80,6 +80,87 @@ const DetailsRev = () => {
         "Elevate your everyday style with our Men's Black T-Shirts, the ultimate wardrobe essential for modern men. Crafted with meticulous attention to detail and designed for comfort, these versatile black tees are a must-have addition to your collection.The classic black color never goes out of style. Whether you're dressing up for a special occasion or keeping it casual, these black t-shirts are the perfect choice, effortlessly complementing any outfit.",
       src: "/Images/meotxemaika.png",
     },
+    {
+      id: 8,
+      name: "Classic Monochrome Tees",
+      category: "men's clothing",
+      description:
+        "Elevate your everyday style with our Men's Black T-Shirts, the ultimate wardrobe essential for modern men. Crafted with meticulous attention to detail and designed for comfort, these versatile black tees are a must-have addition to your collection.The classic black color never goes out of style. Whether you're dressing up for a special occasion or keeping it casual, these black t-shirts are the perfect choice, effortlessly complementing any outfit.",
+      price: '35.00',
+      src: "/Images/cover.svg",
+    },
+    {
+      id: 9,
+      name: "Monochromatic Wardrobe",
+      category: "men's clothing",
+      description:
+        "Elevate your everyday style with our Men's Black T-Shirts, the ultimate wardrobe essential for modern men. Crafted with meticulous attention to detail and designed for comfort, these versatile black tees are a must-have addition to your collection.The classic black color never goes out of style. Whether you're dressing up for a special occasion or keeping it casual, these black t-shirts are the perfect choice, effortlessly complementing any outfit.",
+      price: '27.00',
+      src: "/Images/cover1.svg",
+    },
+    {
+      id: 11,
+      name: "Essential Neutrals",
+      category: "men's clothing",
+      description:
+        "Elevate your everyday style with our Men's Black T-Shirts, the ultimate wardrobe essential for modern men. Crafted with meticulous attention to detail and designed for comfort, these versatile black tees are a must-have addition to your collection.The classic black color never goes out of style. Whether you're dressing up for a special occasion or keeping it casual, these black t-shirts are the perfect choice, effortlessly complementing any outfit.",
+      price: '22.00',
+      src: "/Images/cover2.svg",
+    },
+    {
+      id: 12,
+      name: "UTRAANET Black",
+      category: "men's clothing",
+      description:
+        "Elevate your everyday style with our Men's Black T-Shirts, the ultimate wardrobe essential for modern men. Crafted with meticulous attention to detail and designed for comfort, these versatile black tees are a must-have addition to your collection.The classic black color never goes out of style. Whether you're dressing up for a special occasion or keeping it casual, these black t-shirts are the perfect choice, effortlessly complementing any outfit.",
+      price: '43.00',
+      src: "/Images/cover3.svg",
+    },
+    {
+      id: 13,
+      name: "Elegant Ebony Sweatshirts",
+      category: "men's clothing",
+      description:
+        "Elevate your everyday style with our Men's Black T-Shirts, the ultimate wardrobe essential for modern men. Crafted with meticulous attention to detail and designed for comfort, these versatile black tees are a must-have addition to your collection.The classic black color never goes out of style. Whether you're dressing up for a special occasion or keeping it casual, these black t-shirts are the perfect choice, effortlessly complementing any outfit.",
+      price: '35.00',
+      src: "/Images/cover4.svg",
+    },
+    {
+      id: 14,
+      name: "Sleek and Cozy Black",
+      category: "men's clothing",
+      description:
+        "Elevate your everyday style with our Men's Black T-Shirts, the ultimate wardrobe essential for modern men. Crafted with meticulous attention to detail and designed for comfort, these versatile black tees are a must-have addition to your collection.The classic black color never goes out of style. Whether you're dressing up for a special occasion or keeping it casual, these black t-shirts are the perfect choice, effortlessly complementing any outfit.",
+      price: '57.00',
+      src: "/Images/cover5.svg",
+    },
+    {
+      id: 15,
+      name: "Raw Black Tees",
+      category: "men's clothing",
+      description:
+        "Elevate your everyday style with our Men's Black T-Shirts, the ultimate wardrobe essential for modern men. Crafted with meticulous attention to detail and designed for comfort, these versatile black tees are a must-have addition to your collection.The classic black color never goes out of style. Whether you're dressing up for a special occasion or keeping it casual, these black t-shirts are the perfect choice, effortlessly complementing any outfit.",
+      price: '19.00',
+      src: "/Images/cover6.svg",
+    },
+    {
+      id: 16,
+      name: "MOCKUP Black",
+      category: "men's clothing",
+      description:
+        "Elevate your everyday style with our Men's Black T-Shirts, the ultimate wardrobe essential for modern men. Crafted with meticulous attention to detail and designed for comfort, these versatile black tees are a must-have addition to your collection.The classic black color never goes out of style. Whether you're dressing up for a special occasion or keeping it casual, these black t-shirts are the perfect choice, effortlessly complementing any outfit.",
+      price: '30.00',
+      src: "/Images/cover7.svg",
+    },
+    {
+      id: 17,
+      name: "Athletic Shirt",
+      category: "men's clothing",
+      description:
+        "Elevate your everyday style with our Men's Black T-Shirts, the ultimate wardrobe essential for modern men. Crafted with meticulous attention to detail and designed for comfort, these versatile black tees are a must-have addition to your collection.The classic black color never goes out of style. Whether you're dressing up for a special occasion or keeping it casual, these black t-shirts are the perfect choice, effortlessly complementing any outfit.",
+      price: '35.00',
+      src: "/Images/cover8.svg",
+    }
   ];
 
   const item = list[Number(userid)];
@@ -124,50 +205,50 @@ const DetailsRev = () => {
   const [revEmail, setRevEmail] = useState<string>("")
   const [revName, setRevName] = useState<string>("")
   const [revMess, setRevMess] = useState<string>("")
-  const [seconds, setSeconds] = useState<any>(0);
-  const [startTime, setStartTime] = useState<number | null>(null); 
+  const [elapsedTime, setElapsedTime] = useState<number>(0); 
+  const [startTime, setStartTime] = useState<number | null>(null)
 
-  
   useEffect(() => {
     const storedStartTime = localStorage.getItem('startTime');
-
     if (storedStartTime) {
       const parsedStartTime = Number(storedStartTime);
-      setStartTime(parsedStartTime); 
+      setStartTime(parsedStartTime);
     }
   }, []);
 
-  
+
   useEffect(() => {
-    if (startTime === null) return; 
+    if (startTime === null) return; // If no start time, do nothing
 
-    const elapsedTime = Math.floor((new Date().getTime() - startTime) / 1000);
-    setSeconds(elapsedTime); 
-
-    localStorage.setItem('elapsedTime', elapsedTime.toString()); 
+    // Calculate elapsed time once on page refresh
+    const storedElapsedTime = Number(localStorage.getItem('elapsedTime') || 0);
+    const currentElapsedTime = Math.floor((new Date().getTime() - startTime) / 1000);
+    if (currentElapsedTime !== storedElapsedTime) {
+      localStorage.setItem('elapsedTime', currentElapsedTime.toString());
+      setElapsedTime(currentElapsedTime); // Update state with the elapsed time
+    }
   }, [startTime]); 
-
 
 
 
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
-    
+
     const currentTime = new Date().getTime();
-    setStartTime(currentTime); 
-    setSeconds(1); 
+    setStartTime(currentTime);
+    setElapsedTime(0); // Reset elapsed time on submit
 
-    localStorage.setItem('startTime', currentTime.toString()); 
-    localStorage.setItem('elapsedTime', '1'); 
+    localStorage.setItem('startTime', currentTime.toString());
+    localStorage.setItem('elapsedTime', '0');
 
-    const revData = { revEmail, revName, revMess }
+    const revData = { revEmail, revName, revMess };
     localStorage.setItem('user', JSON.stringify(revData));
 
-    setRevEmail('')
-    setRevName('')
-    setRevMess('')
-  }
+    setRevEmail('');
+    setRevName('');
+    setRevMess('');
+  };
 
   const storedUserData = localStorage.getItem('user');
   const user = storedUserData ? JSON.parse(storedUserData) : null;
@@ -175,8 +256,7 @@ const DetailsRev = () => {
   let initials = '';
   if (user && user.revName) {
     const nameParts = user.revName.split(' ');
-
-
+  
     if (nameParts.length >= 2) {
       const [firstName, lastName] = nameParts;
       initials = firstName.charAt(0).toUpperCase() + lastName.charAt(0).toUpperCase();
@@ -185,12 +265,23 @@ const DetailsRev = () => {
     }
   }
 
+  const formatTime = (timeInSeconds: number) => {
+    if (timeInSeconds < 60) {
+      return `${timeInSeconds} second${timeInSeconds !== 1 ? 's' : ''}`;
+    } else {
+      const minutes = Math.floor(timeInSeconds / 60);
+      return `${minutes} minute${minutes !== 1 ? 's' : ''}`;
+    }
+  };
 
-  const newInitials = user ? { 
-    ...user, 
-    logo: initials, 
-    date: `${seconds} Seconds ago` 
-  } : null;
+
+  const newInitials = user
+  ? {
+      ...user,
+      logo: initials,
+      date: `${formatTime(elapsedTime)} ago`,
+    }
+  : null;
 
 
 
@@ -220,7 +311,9 @@ const DetailsRev = () => {
     }
   ]
 
-  RevList.push(newInitials)
+  if (newInitials) {
+    RevList.push(newInitials);
+  }
 
   return (
     <div>
@@ -343,7 +436,7 @@ const DetailsRev = () => {
             </span>
           </div>
           <button onClick={revTabCLick} className="w-[155px] h-[44px] relative top-[114px] text-center justify-center items-center rounded-[4px] border py-[12px] px-[24px] flex gap-[6px] bg-[#FFFFFF] border-[#0E1422]">
-            Write a review 
+            Write a review
           </button>
           <div className="w-[106px] h-[24px] absolute top-[158px] left-[621px] rounded-[4px] px-[10px] flex gap-[5px] items-center hover:cursor-pointer">
             <Menu as="div" className="relative inline-block text-left">

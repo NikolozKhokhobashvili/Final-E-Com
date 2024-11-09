@@ -13,7 +13,7 @@ const Header = () => {
   };
 
   return (
-    <header className=" max-w-[1116px] w-[100%] max-h-[84px]  h-[100%] absolute left-[162px] top-[40px] right-[162px] border-b-[1px] border-#F6F6F6">
+    <header className="  w-[full] max-h-[84px]  h-[100%] absolute left-[162px] top-[40px] right-[162px] border-b-[1px] border-#F6F6F6">
       <div className="flex justify-between items-center w-[100%] h-[45px]  px-[12px] relative top-[20px]">
         <div className="flex items-center gap-[12px]">
           <div className="bg-[#0E1422] rounded-[100px] w-[40px] h-[40px] px-[7px] py-[6px] flex justify-center">
@@ -57,10 +57,10 @@ const Header = () => {
                 <div className="py-1">
                   <MenuItem>
                     <Link
-                      to="/"
+                      to="/list"
                       className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
                     >
-                      Account settings
+                      List
                     </Link>
                   </MenuItem>
                   <MenuItem>

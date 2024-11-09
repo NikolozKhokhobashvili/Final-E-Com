@@ -4,16 +4,17 @@ import Features from '../components/Features'
 import Bestseller from "../components/Bestseller";
 import Startbrowsing from "../components/Startbrowsing";
 import Productlist from "../components/Productlist";
+import Layout from "../components/Layout";
 
 const HomePage = () =>{
     return(
-        <div>
+        <Layout>
             <Hero/>
             <Features/>
             <Bestseller/>
             <Startbrowsing/>
             <Productlist/>
-        </div>
+        </Layout>
     )
 }
 

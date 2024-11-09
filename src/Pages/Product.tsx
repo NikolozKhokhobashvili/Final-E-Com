@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import DetailsRevbtns from "../components/DetailsRevbtns";
 import { addToCart } from "../store/app/Cart";
+import Layout from "../components/Layout";
 
 const Product = () => {
   const dispatch = useDispatch();
@@ -91,6 +92,69 @@ const Product = () => {
       category: "men's clothing",
       src: "/Images/meotxemaika.png",
     },
+    {
+      id: 8,
+      name: "Classic Monochrome Tees",
+      category: "men's clothing",
+      price: '35.00',
+      src: "/Images/cover.svg",
+    },
+    {
+      id: 9,
+      name: "Monochromatic Wardrobe",
+      category: "men's clothing",
+      price: '27.00',
+      src: "/Images/cover1.svg",
+    },
+    {
+      id: 11,
+      name: "Essential Neutrals",
+      category: "men's clothing",
+      price: '22.00',
+      src: "/Images/cover2.svg",
+    },
+    {
+      id: 12,
+      name: "UTRAANET Black",
+      category: "men's clothing",
+      price: '43.00',
+      src: "/Images/cover3.svg",
+    },
+    {
+      id: 13,
+      name: "Elegant Ebony Sweatshirts",
+      category: "men's clothing",
+      price: '35.00',
+      src: "/Images/cover4.svg",
+    },
+    {
+      id: 14,
+      name: "Sleek and Cozy Black",
+      category: "men's clothing",
+      price: '57.00',
+      src: "/Images/cover5.svg",
+    },
+    {
+      id: 15,
+      name: "Raw Black Tees",
+      category: "men's clothing",
+      price: '19.00',
+      src: "/Images/cover6.svg",
+    },
+    {
+      id: 16,
+      name: "MOCKUP Black",
+      category: "men's clothing",
+      price: '30.00',
+      src: "/Images/cover7.svg",
+    },
+    {
+      id: 17,
+      name: "Athletic Shirt",
+      category: "men's clothing",
+      price: '35.00',
+      src: "/Images/cover8.svg",
+    }
   ];
 
   const item = list[userid];
@@ -218,7 +282,7 @@ const Product = () => {
     window.scrollTo(0, 0);
   }, [item]);
   return (
-    <div>
+    <Layout>
       <div className="w-[1116px] h-[28px] absolute top-[140px] left-[162px] right-[162px] px-[12px] flex gap-[8px items-center">
         <div className=" h-[25px] rounded-[4px] flex gap-[4px] items-center">
           <span className="w-[80px] h-[25px] font-inter font-[500] text-[14px] leading-[24.5px] text-[#5C5F6A]">
@@ -511,7 +575,7 @@ const Product = () => {
               <path d="M0.319647 0L6.89228 9.27241L0 17H1.46911L7.54332 10.1899L12.3705 17H17L10.1222 7.2977L16.6316 0H15.1634L9.47203 6.38024L4.94912 0H0.319647Z" fill="#5C5F6A" />
             </svg>
           </div></a>
-          
+
           <a rel="noopener noreferrer" target="_blank" href="https://www.pinterest.com/"><div className="w-[24px] h-[24px] flex items-center">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="20" viewBox="0 0 16 20" fill="none">
               <path d="M8.2678 0C2.87057 0 0 3.51248 0 7.34245C0 9.1191 0.977426 11.3341 2.54229 12.0366C2.77925 12.1449 2.90842 12.0991 2.9619 11.8749C3.00797 11.7058 3.21366 10.8866 3.31321 10.4999C3.33095 10.4397 3.33261 10.3759 3.31801 10.3148C3.30341 10.2538 3.27308 10.1977 3.23011 10.1524C2.71014 9.54243 2.29794 8.43161 2.29794 7.38912C2.29794 4.71747 4.38937 2.12415 7.94775 2.12415C11.0248 2.12415 13.178 4.15414 13.178 7.05745C13.178 10.3391 11.4675 12.6091 9.24605 12.6091C8.01687 12.6091 7.10115 11.6291 7.39158 10.4174C7.74207 8.97327 8.42989 7.41995 8.42989 6.37912C8.42989 5.4458 7.91073 4.67247 6.85021 4.67247C5.59798 4.67247 4.58271 5.93079 4.58271 7.62161C4.58271 8.69577 4.95706 9.42077 4.95706 9.42077L3.48846 15.4491C3.0993 17.0557 3.54111 19.6574 3.57896 19.8807C3.60282 20.0049 3.73939 20.0432 3.81591 19.9424C3.93768 19.7799 5.43426 17.6107 5.85386 16.0432C6.00689 15.4716 6.633 13.1557 6.633 13.1557C7.0452 13.9116 8.23572 14.5457 9.50357 14.5457C13.2751 14.5457 16 11.1791 16 7.00162C15.986 2.99665 12.6111 0 8.2678 0Z" fill="#5C5F6A" />
@@ -523,10 +587,10 @@ const Product = () => {
             </svg>
           </div></a>
 
-         
+
         </div>
         <button onClick={ShareCLick} className="absolute top-[5px] right-[10px]">
-        <svg
+          <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20px"
             height="20px"
@@ -542,7 +606,7 @@ const Product = () => {
           </svg>
         </button>
       </div>
-    </div>
+    </Layout>
   );
 };
 
