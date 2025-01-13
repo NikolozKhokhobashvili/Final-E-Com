@@ -7,6 +7,8 @@ import Listing from './Pages/Listing'
 import CartPage from './Pages/CartPage'
 import AfterPaymentSuccess from './Pages/AfterPaymentSuccess'
 import PaymentFailed from './Pages/PaymentFailed'
+import Checkout from './Pages/Checkout'
+import Authantication from './Pages/Authantication'
 
 
 function App() {
@@ -20,6 +22,8 @@ function App() {
         <Route path='/cart' element={<CartPage/>}/>
         <Route path='/paymentsuccess' element={<AfterPaymentSuccess/>}/>
         <Route path='/paymentfailed' element={<PaymentFailed/>}/>
+        <Route path='/checkout' element={<Checkout/>}/>
+        <Route path='/authantication' element={<Authantication/>}/>
       </Routes>
       
       <CarTab/>

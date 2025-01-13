@@ -5,8 +5,7 @@ import CartPageProducts from './CartPageProducts';
 
 
 const CartOrderSummary = () => {
-
-  const statusTab = useSelector((store: any) => store.cart.statusTab);
+  
   const cartItems = useSelector((store: any) => store.cart.items);
 
 
@@ -43,7 +42,7 @@ const CartOrderSummary = () => {
         </div>
         <div className='w-[293px] h-[25px] absolute top-[165px] left-[24px] flex justify-between items-center'>
           <span className='font-inter font-[500] text-[14px] leading-[24.5px] text-[#5C5F6A]'>Tax: </span>
-          <span className='font-inter font-[500] text-[14px] leading-[24.5px] text-[#0E1422]'>{taxTotal}</span>
+          <span className='font-inter font-[500] text-[14px] leading-[24.5px] text-[#0E1422]'>${taxTotal}</span>
         </div>
         <div className='border-b w-[293px] h-[24px] absolute top-[190px] left-[24px]'></div>
         <div className='w-[293px] h-[25px] absolute top-[239px] left-[24px] flex justify-between items-center'>

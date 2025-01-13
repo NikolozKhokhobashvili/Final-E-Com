@@ -1,12 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Layout from '../components/Layout'
 import { Link } from 'react-router-dom'
 
 const AfterPaymentSuccess = () => {
+
+    useEffect(()=>{
+        window.scrollTo(0,0)
+    },[])
+
     return (
         <Layout>
             <div className="w-full h-[160px] absolute top-[124px] bg-[#D5E5D7]   px-[162px] flex gap-[8px items-center">
-                <div className=" h-[91px] w-[1116px] relative rounded-[4px] flex gap-[4px] items-center">
+                <div className=" h-[91px] w-[1116px] relative rounded-[4px] mt-[30px] flex gap-[4px] items-center">
                     <h3 className='absolute top-0 left-0 font-inter font-[700] text-[24px] leading-[29.05px] text-[#0E1422]'>Successful Order</h3>
                     <span className="w-[80px] h-[25px] font-inter font-[500] text-[14px] leading-[24.5px] text-[#5C5F6A]">
                         Ecommerce

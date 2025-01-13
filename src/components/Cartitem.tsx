@@ -42,7 +42,7 @@ const Cartitem: React.FC<CartItemProps> = ({ key, productid, quantity, name, pri
     <div className="flex flex-col">
       <div className="w-[352px] h-[112px] relative top-[20px] left-[32px] border-b border-[#E9E9EB] flex justify-between items-center gap-5">
         <div className="w-[80px] h-[80px] border border-[#F6F6F6] bg-[white] flex  justify-center items-center">
-          <img src={src} alt="cover" className="w-[70x] h-[70px]" />
+          <img src={src} alt="cover" className="w-[70px] h-[70px]" />
         </div>
         <div key={key}>
           <h3 className="font-inter font-[500] text-[14px] leading-[24.5px] item-center w-[168px]  h-[25px] overflow-scroll">
